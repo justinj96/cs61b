@@ -89,6 +89,18 @@ public class IntList {
         return A;
     }
 
+    public static IntList idcatenate(IntList A, IntList B) {
+        if (A == null) {
+            return null;
+        }
+        IntList ptr = A;
+        while (ptr.rest != null) {
+           ptr = ptr.rest;
+        }
+        ptr.rest = B;
+        return A;
+    }
+
     /**
      * Returns a list consisting of the elements of A followed by the
      * * elements of B.  May NOT modify items of A.  Use 'new'.
@@ -104,8 +116,8 @@ public class IntList {
         if (A == null) {
             return null;
         }
-        IntList cat = new IntList(A.first, null);
-        IntList ptr = cat;
+        IntList res = new IntList(A.first, null);
+        IntList ptr = res;
         A = A.rest;
         while (A != null) {
             ptr.rest = new IntList(A.first, null);
@@ -113,7 +125,7 @@ public class IntList {
             ptr = ptr.rest;
         }
         ptr.rest = B;
-        return cat;
+        return res;
     }
 
 
