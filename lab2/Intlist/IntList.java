@@ -100,6 +100,22 @@ public class IntList {
         return new IntList(A.first, catenate(A.rest, B));
     }
 
+    public static IntList iCatenate(IntList A, IntList B) {
+        if (A == null) {
+            return null;
+        }
+        IntList cat = new IntList(A.first, null);
+        IntList ptr = cat;
+        A = A.rest;
+        while (A != null) {
+            ptr.rest = new IntList(A.first, null);
+            A = A.rest;
+            ptr = ptr.rest;
+        }
+        ptr.rest = B;
+        return cat;
+    }
+
 
 
 
