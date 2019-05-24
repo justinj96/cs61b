@@ -106,26 +106,26 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        if (A == null) {
-            return B;
-        }
-        return new IntList(A.first, catenate(A.rest, B));
+       if (A == null) {
+           return B;
+       }
+       return new IntList(A.first, catenate(A.rest, B));
     }
 
     public static IntList iCatenate(IntList A, IntList B) {
         if (A == null) {
             return null;
         }
-        IntList res = new IntList(A.first, null);
-        IntList ptr = res;
+        IntList cpy = new IntList(A.first, null);
+        IntList ptr = cpy;
         A = A.rest;
-        while (A != null) {
+        while (A != null){
             ptr.rest = new IntList(A.first, null);
             A = A.rest;
             ptr = ptr.rest;
         }
         ptr.rest = B;
-        return res;
+        return cpy;
     }
 
 
