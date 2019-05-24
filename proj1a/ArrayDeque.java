@@ -14,6 +14,10 @@ public class ArrayDeque<T> {
         size = 0;
     }
 
+    //TODO add ArrayDeque deep copy
+    //public ArrayDeque(LinkedListDeque other)
+
+
     /** if usage ratio is < 25%, shrink */
     private void checkUsage() {
         if (size > 15) {

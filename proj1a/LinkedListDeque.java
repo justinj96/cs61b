@@ -20,6 +20,8 @@ public class LinkedListDeque<T> {
         sentinel.prev = sentinel;
         size = 0;
     }
+    //TODO add LinkedListDeque deep copy
+    //public LinkedListDeque(LinkedListDeque other)
 
 //    public LinkedListDeque(T x) {
 //        sentinel = new Node(null, x, null);
