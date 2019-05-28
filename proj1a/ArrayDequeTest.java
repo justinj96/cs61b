@@ -1,3 +1,5 @@
+import java.lang.reflect.Array;
+
 public class ArrayDequeTest {
 	public static void main(String[] args) {
 		ArrayDeque<Integer> L = new ArrayDeque<>();
@@ -13,5 +15,6 @@ public class ArrayDequeTest {
 		L.removeLast();
 		L.removeFirst();
 		L.printDeque();
+		ArrayDeque<Integer> L2 = new ArrayDeque<>(L);
 	}
 }

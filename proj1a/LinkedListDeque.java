@@ -20,13 +20,18 @@ public class LinkedListDeque<T> {
         sentinel.prev = sentinel;
         size = 0;
     }
-    //TODO add LinkedListDeque deep copy
-    //public LinkedListDeque(LinkedListDeque other)
 
-//    public LinkedListDeque(T x) {
-//        sentinel = new Node(null, x, null);
-//        size = 1;
-//    }
+    public LinkedListDeque(LinkedListDeque other) {
+        sentinel = new Node(null, null, null);
+        sentinel.next = sentinel;
+        sentinel.prev = sentinel;
+        size = 0;
+
+        for (int i = 0; i < other.size(); i++) {
+            addLast((T) other.get(i));
+        }
+    }
+
 
     public int size(){
         return size;
@@ -79,18 +84,21 @@ public class LinkedListDeque<T> {
             return null;
         }
         while (index != 0) {
-           ptr = ptr.next;
-           index--;
+            ptr = ptr.next;
+            index--;
         }
         return ptr.item;
     }
-    public static void main(String[] args) {
-        LinkedListDeque<Integer> L = new LinkedListDeque<>();
-        L.addFirst(11);
-        L.addLast(15);
-        L.addLast(20);
-        L.addLast(25);
-        System.out.println(L.removeFirst());
-        System.out.println(L.get(2));
+
+    public T getRecursive(int index) {
+        return recursiveHelp(index, sentinel.next);
     }
+
+    public T recursiveHelp(int index, Node p) {
+        if (index == 0) {
+            return p.item;
+        }
+        return recursiveHelp(index - 1, p.next);
+    }
+
 }

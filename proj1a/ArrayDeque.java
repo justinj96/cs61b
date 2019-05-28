@@ -1,3 +1,4 @@
+
 public class ArrayDeque<T> {
     private T[] items;
     private int first; // index of first item
@@ -15,7 +16,16 @@ public class ArrayDeque<T> {
     }
 
     //TODO add ArrayDeque deep copy
-    //public ArrayDeque(LinkedListDeque other)
+    public ArrayDeque(ArrayDeque other) {
+        items = (T[]) new Object[STARTSIZE];
+        first = 0;
+        last = 0;
+        size = 0;
+
+        for (int i = 0; i < other.size(); i++) {
+            addLast((T) other.get(i));
+        }
+    }
 
 
     /** if usage ratio is < 25%, shrink */
