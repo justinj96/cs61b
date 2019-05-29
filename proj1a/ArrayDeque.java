@@ -29,13 +29,12 @@ public class ArrayDeque<T> {
 
 
     /** if usage ratio is < 25%, shrink */
-//    private void checkUsage() {
-//        if (size > 15) {
-//            if (size / items.length < .25) {
-//                shrink(items.length / RFACTOR);
-//            }
-//        }
-//    }
+    private void checkUsage() {
+        double length = (double) size / (double) items.length;
+        if (length < .25) {
+            shrink(items.length / RFACTOR);
+        }
+    }
 
     /** makes array larger */
     private void enlarge(int capacity, int start) {
@@ -56,7 +55,7 @@ public class ArrayDeque<T> {
         T[] a = (T[]) new Object[items.length];
         System.arraycopy(items, 1, a, 0, items.length - 1);
         items = a;
-        shrink(items.length / RFACTOR);
+        checkUsage();
     }
 
     public void addFirst(T x) {
@@ -108,7 +107,7 @@ public class ArrayDeque<T> {
         if (size == 0) {
             return null;
         }
-        return items[size - 1];
+        return items[last];
     }
 
     public T removeFirst() {
@@ -124,14 +123,14 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
-        T x = getLast();
+        T x = items[last];
         if (x == null || last == -1) {
             return null;
         }
-        items[size - 1] = null;
+        items[last] = null;
         size -= 1;
         last -= 1;
-        shrink(items.length / RFACTOR);
+        checkUsage();
         return x;
     }
 
