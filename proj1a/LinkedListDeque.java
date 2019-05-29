@@ -3,11 +3,11 @@ public class LinkedListDeque<T> {
     private int size;
 
     public class Node {
-        public Node prev;
-        public T item;
-        public Node next;
+        private Node prev;
+        private T item;
+        private Node next;
 
-        public Node(Node p, T i, Node n) {
+        private Node(Node p, T i, Node n) {
             prev = p;
             item = i;
             next = n;
@@ -33,7 +33,7 @@ public class LinkedListDeque<T> {
     }
 
 
-    public int size(){
+    public int size() {
         return size;
     }
 
@@ -63,6 +63,9 @@ public class LinkedListDeque<T> {
     }
 
     public T removeFirst() {
+        if (size == 0) {
+            return null;
+        }
         T removed = sentinel.next.item;
         sentinel.next = sentinel.next.next;
         sentinel.next.prev = sentinel;
@@ -94,7 +97,7 @@ public class LinkedListDeque<T> {
         return recursiveHelp(index, sentinel.next);
     }
 
-    public T recursiveHelp(int index, Node p) {
+    private T recursiveHelp(int index, Node p) {
         if (index == 0) {
             return p.item;
         }

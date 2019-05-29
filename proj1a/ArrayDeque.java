@@ -1,12 +1,13 @@
-
 public class ArrayDeque<T> {
     private T[] items;
     private int first; // index of first item
     private int last; // index of last item
     private int size;
 
-    private static final int STARTSIZE = 8; // start size of arrays is always 8
-    private static final int RFACTOR = 2; // multiply or divide array size by this to shrink or enlarge
+    // start size of arrays is always 8
+    private static final int STARTSIZE = 8;
+    // multiply or divide array size by this to shrink or enlarge
+    private static final int RFACTOR = 2;
 
     public ArrayDeque() {
         items = (T[]) new Object[STARTSIZE];
@@ -15,7 +16,6 @@ public class ArrayDeque<T> {
         size = 0;
     }
 
-    //TODO add ArrayDeque deep copy
     public ArrayDeque(ArrayDeque other) {
         items = (T[]) new Object[STARTSIZE];
         first = 0;
@@ -66,7 +66,7 @@ public class ArrayDeque<T> {
             enlarge(size * RFACTOR, 1);
             last += 1;
         } else {
-            enlarge(STARTSIZE, 1);
+            enlarge(items.length, 1);
             last += 1;
         }
         items[0] = x;
@@ -99,16 +99,19 @@ public class ArrayDeque<T> {
         System.out.println();
     }
 
-    public T getFirst() {
+    private T getFirst() {
         return items[0];
     }
 
-    public T getLast() {
+    private T getLast() {
         return items[size - 1];
     }
 
     public T removeFirst() {
         T x = getFirst();
+        if (x == null) {
+            return null;
+        }
         items[0] = null;
         size -= 1;
         last -= 1;
@@ -118,6 +121,9 @@ public class ArrayDeque<T> {
 
     public T removeLast() {
         T x = getLast();
+        if (x == null) {
+            return null;
+        }
         items[size - 1] = null;
         size -= 1;
         last -= 1;
