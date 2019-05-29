@@ -31,8 +31,10 @@ public class ArrayDeque<T> {
     /** if usage ratio is < 25%, shrink */
     private void checkUsage() {
         double length = (double) size / (double) items.length;
-        if (length < .25) {
-            shrink(items.length / RFACTOR);
+        if (items.length > 1) {
+            if (length < .25) {
+                shrink(items.length / RFACTOR);
+            }
         }
     }
 
