@@ -77,7 +77,7 @@ public class ArrayDeque<T> {
         if (size == items.length) {
             enlarge(size * RFACTOR, 0);
             last += 1;
-        } else if (size > 1) {
+        } else if (size > 0) {
             last += 1;
         }
         items[size] = x;
@@ -116,8 +116,8 @@ public class ArrayDeque<T> {
             return null;
         }
         items[0] = null;
+        size -= 1;
         if (size > 0) {
-            size -= 1;
             last -= 1;
         }
         shift();
@@ -130,8 +130,8 @@ public class ArrayDeque<T> {
             return null;
         }
         items[last] = null;
+        size -= 1;
         if (size > 0) {
-            size -= 1;
             last -= 1;
         }
         checkUsage();
