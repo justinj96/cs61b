@@ -105,6 +105,9 @@ public class ArrayDeque<T> {
     }
 
     private T getLast() {
+        if (size == 0) {
+            return null;
+        }
         return items[size - 1];
     }
 
@@ -122,7 +125,7 @@ public class ArrayDeque<T> {
 
     public T removeLast() {
         T x = getLast();
-        if (x == null || size == 0) {
+        if (x == null || last == -1) {
             return null;
         }
         items[size - 1] = null;
@@ -133,7 +136,9 @@ public class ArrayDeque<T> {
     }
 
     public T get(int x) {
+        if (x < 0) {
+            return null;
+        }
         return items[x];
     }
 }
-
