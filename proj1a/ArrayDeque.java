@@ -16,26 +16,26 @@ public class ArrayDeque<T> {
         size = 0;
     }
 
-    public ArrayDeque(ArrayDeque other) {
-        items = (T[]) new Object[STARTSIZE];
-        first = 0;
-        last = 0;
-        size = 0;
-
-        for (int i = 0; i < other.size(); i++) {
-            addLast((T) other.get(i));
-        }
-    }
+//    public ArrayDeque(ArrayDeque other) {
+//        items = (T[]) new Object[STARTSIZE];
+//        first = 0;
+//        last = 0;
+//        size = 0;
+//
+//        for (int i = 0; i < other.size(); i++) {
+//            addLast((T) other.get(i));
+//        }
+//    }
 
 
     /** if usage ratio is < 25%, shrink */
-    private void checkUsage() {
-        if (size > 15) {
-            if (size / items.length < .25) {
-                shrink(items.length / RFACTOR);
-            }
-        }
-    }
+//    private void checkUsage() {
+//        if (size > 15) {
+//            if (size / items.length < .25) {
+//                shrink(items.length / RFACTOR);
+//            }
+//        }
+//    }
 
     /** makes array larger */
     private void enlarge(int capacity, int start) {
@@ -56,7 +56,7 @@ public class ArrayDeque<T> {
         T[] a = (T[]) new Object[items.length];
         System.arraycopy(items, 1, a, 0, items.length - 1);
         items = a;
-        checkUsage();
+        shrink(items.length / RFACTOR);
     }
 
     public void addFirst(T x) {
@@ -88,6 +88,7 @@ public class ArrayDeque<T> {
     public boolean isEmpty() {
         return size == 0;
     }
+
     public int size() {
         return size;
     }
@@ -109,7 +110,7 @@ public class ArrayDeque<T> {
 
     public T removeFirst() {
         T x = getFirst();
-        if (x == null) {
+        if (x == null || size == 0) {
             return null;
         }
         items[0] = null;
@@ -121,13 +122,13 @@ public class ArrayDeque<T> {
 
     public T removeLast() {
         T x = getLast();
-        if (x == null) {
+        if (x == null || size == 0) {
             return null;
         }
         items[size - 1] = null;
         size -= 1;
         last -= 1;
-        checkUsage();
+        shrink(items.length / RFACTOR);
         return x;
     }
 

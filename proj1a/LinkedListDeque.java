@@ -2,7 +2,7 @@ public class LinkedListDeque<T> {
     private Node sentinel;
     private int size;
 
-    public class Node {
+    private class Node {
         private Node prev;
         private T item;
         private Node next;
@@ -21,16 +21,16 @@ public class LinkedListDeque<T> {
         size = 0;
     }
 
-    public LinkedListDeque(LinkedListDeque other) {
-        sentinel = new Node(null, null, null);
-        sentinel.next = sentinel;
-        sentinel.prev = sentinel;
-        size = 0;
-
-        for (int i = 0; i < other.size(); i++) {
-            addLast((T) other.get(i));
-        }
-    }
+//    public LinkedListDeque(LinkedListDeque other) {
+//        sentinel = new Node(null, null, null);
+//        sentinel.next = sentinel;
+//        sentinel.prev = sentinel;
+//        size = 0;
+//
+//        for (int i = 0; i < other.size(); i++) {
+//            addLast((T) other.get(i));
+//        }
+//    }
 
 
     public int size() {
