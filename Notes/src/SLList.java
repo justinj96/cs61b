@@ -74,8 +74,8 @@ public class SLList {
         while(ptr != null) {
             IntNode temp = ptr.next;
             ptr.next = sentinel.next;
-            sentinel.next = temp;
-            temp = ptr;
+            sentinel.next = ptr;
+            ptr = temp;
         }
     }
 

@@ -7,8 +7,7 @@ public class ArrayDeque<T> {
     // start size of arrays is always 8
     private static final int STARTSIZE = 8;
     // multiply or divide array size by this to shrink or enlarge
-    private static final int EFACTOR = 3;
-    private static final int SFACTOR = 2;
+    private static final int RFACTOR = 2;
 
     public ArrayDeque() {
         items = (T[]) new Object[STARTSIZE];
@@ -34,7 +33,7 @@ public class ArrayDeque<T> {
         double length = (double) size / (double) items.length;
         if (items.length > 15) {
             if (length < .25) {
-                shrink(items.length / SFACTOR);
+                shrink(items.length / RFACTOR);
             }
         }
     }
@@ -62,12 +61,10 @@ public class ArrayDeque<T> {
     }
 
     public void addFirst(T x) {
-        if (size == 0) {
-            enlarge(STARTSIZE, 1);
-        } else if (size == items.length) {
-            enlarge(size * EFACTOR, 1);
+        if (size == items.length) {
+            enlarge(size * RFACTOR, 1);
             last += 1;
-        } else {
+        } else if (size > 0) {
             enlarge(items.length, 1);
             last += 1;
         }
@@ -78,7 +75,7 @@ public class ArrayDeque<T> {
 
     public void addLast(T x) {
         if (size == items.length) {
-            enlarge(size * EFACTOR, 0);
+            enlarge(size * RFACTOR, 0);
             last += 1;
         } else if (size > 0) {
             last += 1;
