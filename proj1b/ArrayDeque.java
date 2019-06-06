@@ -1,4 +1,4 @@
-public class ArrayDeque<T>{
+public class ArrayDeque<T> implements Deque<T>{
     private T[] items;
     private int first; // index of first item
     private int last; // index of last item
@@ -60,6 +60,7 @@ public class ArrayDeque<T>{
         checkUsage();
     }
 
+    @Override
     public void addFirst(T x) {
         if (size == items.length) {
             enlarge(size * RFACTOR, 1);
@@ -70,9 +71,9 @@ public class ArrayDeque<T>{
         }
         items[0] = x;
         size += 1;
-
     }
 
+    @Override
     public void addLast(T x) {
         if (size == items.length) {
             enlarge(size * RFACTOR, 0);
@@ -84,14 +85,12 @@ public class ArrayDeque<T>{
         size += 1;
     }
 
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
+    @Override
     public int size() {
         return size;
     }
 
+    @Override
     public void printDeque() {
         for (int i = 0; i < size; i++) {
             System.out.print(items[i] + " ");
@@ -110,6 +109,7 @@ public class ArrayDeque<T>{
         return items[last];
     }
 
+    @Override
     public T removeFirst() {
         T x = getFirst();
         if (x == null) {
@@ -124,6 +124,7 @@ public class ArrayDeque<T>{
         return x;
     }
 
+    @Override
     public T removeLast() {
         T x = items[last];
         if (x == null) {
@@ -138,6 +139,7 @@ public class ArrayDeque<T>{
         return x;
     }
 
+    @Override
     public T get(int x) {
         if (x < 0) {
             return null;
