@@ -30,6 +30,7 @@ public class TestPalindrome {
     public void testIsPalindromeOverload() {
         assertTrue(palindrome.isPalindrome("flake", offByOne));
         assertTrue(palindrome.isPalindrome("axayb", offByOne));
+        assertTrue(palindrome.isPalindrome("#&a%$", offByOne));
         assertFalse(palindrome.isPalindrome("axaya", offByOne));
         assertFalse(palindrome.isPalindrome("true", offByOne));
     }
