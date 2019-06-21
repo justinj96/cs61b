@@ -6,6 +6,6 @@ public class UnionFindDriver {
         djs.union(3, 4);
         djs.union(3, 0);
         djs.union(3, 5);
-        int size = djs.sizeOf(1);
+        int size = djs.sizeOf(0);
     }
 }
